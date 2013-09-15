@@ -4,17 +4,24 @@ require "./customer"
 require 'test/unit'
 
 class TestCustomer < Test::Unit::TestCase
-  def test_customer_statement
-    m1 = Movie.new('관상', Movie::NEW_RELEASE)
-    m2 = Movie.new('타이타닉', Movie::REGULAR)
-    m3 = Movie.new('톰과제리', Movie::CHILDRENS)
 
-    c = Customer.new('jang')
+  def test_statement
+    movie_1 = Movie.new('관상', Movie::NEW_RELEASE)
+    movie_2 = Movie.new('타이타닉', Movie::REGULAR)
+    movie_3 = Movie.new('톰과제리', Movie::CHILDRENS)
 
-    c.add_rental Rental.new(m1, 3)
-    c.add_rental Rental.new(m2, 2)
-    c.add_rental Rental.new(m3, 5)
+    rental_1 = Rental.new(movie_1, 3)
+    rental_2 = Rental.new(movie_2, 2)
+    rental_3 = Rental.new(movie_3, 5)
 
-    assert_equal "고객 jang의 대여 기록\n\t관상\t9\n\t타이타닉\t2\n\t톰과제리\t4.5\n대여료는 15.5입니다.\n적립 포인트는 4입니다.", c.statement
+    customer = Customer.new('jang')
+
+    customer.add_rental rental_1
+    customer.add_rental rental_2
+    customer.add_rental rental_3
+
+    assert_equal "고객 jang의 대여 기록\n\t관상\t9\n\t타이타닉\t2\n\t톰과제리\t4.5\n대여료는 15.5입니다.\n적립 포인트는 4입니다.", customer.statement
   end
+
+
 end
