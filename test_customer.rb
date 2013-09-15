@@ -6,9 +6,9 @@ require 'test/unit'
 class TestCustomer < Test::Unit::TestCase
 
   def test_statement
-    movie_1 = Movie.new('관상', Movie::NEW_RELEASE)
-    movie_2 = Movie.new('타이타닉', Movie::REGULAR)
-    movie_3 = Movie.new('톰과제리', Movie::CHILDRENS)
+    movie_1 = Movie.new('관상', NewReleasePrice.new)
+    movie_2 = Movie.new('타이타닉', RegularPrice.new)
+    movie_3 = Movie.new('톰과제리', ChildrensPrice.new)
 
     rental_1 = Rental.new(movie_1, 3)
     rental_2 = Rental.new(movie_2, 2)
